@@ -1,8 +1,10 @@
 export interface EmployeeBillingData {
   id: string;
   name: string; // Colaborador
-  planType: string; // Tipo do Plano
-  monthlyFee: number; // Mensalidade
+  healthPlanType: string; // Tipo do Plano de Saúde
+  dentalPlanType: string; // Tipo do Plano Odontológico
+  monthlyFee: number; // Mensalidade Saúde
+  dentalCost: number; // Mensalidade Odonto
   copay: number; // Coparticipação
   dependentsCost: number; // Custo Dependentes
   total: number; // Total a descontar

@@ -14,7 +14,8 @@ import {
   Activity,
   CreditCard,
   ChevronRight,
-  CheckCircle2
+  CheckCircle2,
+  Smile
 } from 'lucide-react';
 import { parseExcelFile, downloadExcelTemplate } from './utils/excelParser';
 import { generatePDF } from './utils/pdfGenerator';
@@ -91,14 +92,14 @@ const App: React.FC = () => {
       <header className="bg-white/80 backdrop-blur-md sticky top-0 z-10 border-b border-slate-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="bg-gradient-to-tr from-indigo-600 to-purple-600 text-white p-2 rounded-lg shadow-lg shadow-indigo-200">
+            <div className="bg-gradient-to-tr from-orange-500 to-red-500 text-white p-2 rounded-lg shadow-lg shadow-orange-200">
               <Activity className="h-6 w-6" />
             </div>
             <div>
-              <h1 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-700 to-purple-600">
+              <h1 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-red-600">
                 PJ Health Manager
               </h1>
-              <p className="text-xs text-slate-500 font-medium">Gestão de Benefícios</p>
+              <p className="text-xs text-slate-500 font-medium">Raiz Educação - Benefícios</p>
             </div>
           </div>
 
@@ -112,7 +113,7 @@ const App: React.FC = () => {
             </button>
             
             <div className="relative">
-               <label htmlFor="file-upload" className="cursor-pointer inline-flex items-center justify-center px-5 py-2 text-sm font-medium text-white bg-indigo-600 rounded-full hover:bg-indigo-700 transition-all shadow-md shadow-indigo-200 hover:shadow-indigo-300">
+               <label htmlFor="file-upload" className="cursor-pointer inline-flex items-center justify-center px-5 py-2 text-sm font-medium text-white bg-orange-600 rounded-full hover:bg-orange-700 transition-all shadow-md shadow-orange-200 hover:shadow-orange-300">
                 <Upload className="mr-2 h-4 w-4" />
                 Carregar Dados
               </label>
@@ -142,7 +143,7 @@ const App: React.FC = () => {
                 </div>
                 <input
                   type="text"
-                  className="block w-full pl-10 pr-3 py-2.5 sm:text-sm border border-slate-200 rounded-xl bg-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all shadow-sm"
+                  className="block w-full pl-10 pr-3 py-2.5 sm:text-sm border border-slate-200 rounded-xl bg-white focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all shadow-sm"
                   placeholder="Buscar por nome..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
@@ -172,25 +173,25 @@ const App: React.FC = () => {
                       onClick={() => handleSelectEmployee(emp)}
                       className={`w-full group flex items-center p-3 rounded-xl transition-all duration-200 border ${
                         isSelected 
-                          ? 'bg-indigo-50 border-indigo-200 shadow-sm' 
+                          ? 'bg-orange-50 border-orange-200 shadow-sm' 
                           : 'bg-white border-transparent hover:bg-slate-50 hover:border-slate-200'
                       }`}
                     >
                       <div className={`flex-shrink-0 h-10 w-10 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${
                         isSelected 
-                          ? 'bg-indigo-600 text-white shadow-md shadow-indigo-200' 
-                          : 'bg-slate-100 text-slate-500 group-hover:bg-indigo-100 group-hover:text-indigo-600'
+                          ? 'bg-orange-600 text-white shadow-md shadow-orange-200' 
+                          : 'bg-slate-100 text-slate-500 group-hover:bg-orange-100 group-hover:text-orange-600'
                       }`}>
                         {getInitials(emp.name)}
                       </div>
                       <div className="ml-3 flex-1 text-left overflow-hidden">
-                        <p className={`text-sm font-semibold truncate ${isSelected ? 'text-indigo-900' : 'text-slate-700'}`}>
+                        <p className={`text-sm font-semibold truncate ${isSelected ? 'text-orange-900' : 'text-slate-700'}`}>
                           {emp.name}
                         </p>
-                        <p className="text-xs text-slate-500 truncate">{emp.planType}</p>
+                        <p className="text-xs text-slate-500 truncate">{emp.healthPlanType}</p>
                       </div>
                       <div className="ml-2 text-right">
-                         <span className={`block text-xs font-bold ${isSelected ? 'text-indigo-700' : 'text-slate-600'}`}>
+                         <span className={`block text-xs font-bold ${isSelected ? 'text-orange-700' : 'text-slate-600'}`}>
                            {formatCurrency(emp.total)}
                          </span>
                          <span className="text-[10px] text-slate-400">{emp.referenceMonth}</span>
@@ -215,28 +216,33 @@ const App: React.FC = () => {
                 <div className="bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden">
                   
                   {/* Card Header */}
-                  <div className="relative bg-gradient-to-r from-indigo-600 to-indigo-800 p-6 sm:p-8 text-white overflow-hidden">
+                  <div className="relative bg-gradient-to-r from-orange-600 to-red-600 p-6 sm:p-8 text-white overflow-hidden">
                     <div className="absolute top-0 right-0 -mt-4 -mr-4 w-32 h-32 bg-white opacity-10 rounded-full blur-2xl"></div>
-                    <div className="absolute bottom-0 left-0 -mb-4 -ml-4 w-32 h-32 bg-purple-500 opacity-20 rounded-full blur-2xl"></div>
+                    <div className="absolute bottom-0 left-0 -mb-4 -ml-4 w-32 h-32 bg-orange-500 opacity-20 rounded-full blur-2xl"></div>
                     
                     <div className="relative z-10 flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
                       <div>
-                        <div className="flex items-center gap-2 mb-2">
-                           <span className="px-2.5 py-0.5 rounded-full bg-white/20 backdrop-blur-sm text-xs font-medium border border-white/10">
+                        <div className="flex flex-wrap items-center gap-2 mb-2">
+                           <span className="px-2.5 py-0.5 rounded-full bg-white/20 backdrop-blur-sm text-xs font-medium border border-white/10 flex items-center">
                              {selectedEmployee.referenceMonth}
                            </span>
-                           <span className="px-2.5 py-0.5 rounded-full bg-indigo-500/50 backdrop-blur-sm text-xs font-medium border border-indigo-400/30">
-                             {selectedEmployee.planType}
+                           <span className="px-2.5 py-0.5 rounded-full bg-orange-500/50 backdrop-blur-sm text-xs font-medium border border-orange-400/30 flex items-center">
+                             <Activity className="w-3 h-3 mr-1" />
+                             {selectedEmployee.healthPlanType}
+                           </span>
+                           <span className="px-2.5 py-0.5 rounded-full bg-blue-500/30 backdrop-blur-sm text-xs font-medium border border-blue-400/30 flex items-center">
+                             <Smile className="w-3 h-3 mr-1" />
+                             {selectedEmployee.dentalPlanType}
                            </span>
                         </div>
                         <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">{selectedEmployee.name}</h2>
-                        <p className="text-indigo-100 text-sm mt-1 flex items-center">
-                          <CheckCircle2 className="h-3.5 w-3.5 mr-1.5 text-green-400" />
+                        <p className="text-orange-100 text-sm mt-1 flex items-center">
+                          <CheckCircle2 className="h-3.5 w-3.5 mr-1.5 text-white/80" />
                           Dados processados com sucesso
                         </p>
                       </div>
                       <div className="text-left sm:text-right">
-                        <p className="text-sm text-indigo-200 font-medium mb-1">Total a Descontar</p>
+                        <p className="text-sm text-orange-100 font-medium mb-1">Total a Descontar</p>
                         <p className="text-3xl font-bold">{formatCurrency(selectedEmployee.total)}</p>
                       </div>
                     </div>
@@ -244,30 +250,41 @@ const App: React.FC = () => {
 
                   {/* Card Body: Stats Grid */}
                   <div className="p-6 sm:p-8">
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-                      {/* Stat 1 */}
-                      <div className="bg-slate-50 rounded-xl p-4 border border-slate-100 hover:border-indigo-100 hover:shadow-md transition-all group">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                      {/* Stat 1: Saude */}
+                      <div className="bg-slate-50 rounded-xl p-4 border border-slate-100 hover:border-orange-100 hover:shadow-md transition-all group">
                          <div className="flex items-center justify-between mb-2">
-                            <span className="text-xs font-semibold text-slate-400 uppercase">Mensalidade</span>
-                            <CreditCard className="h-4 w-4 text-indigo-400 group-hover:text-indigo-600 transition-colors" />
+                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wide">Saúde</span>
+                            <CreditCard className="h-4 w-4 text-orange-400 group-hover:text-orange-600 transition-colors" />
                          </div>
                          <p className="text-lg font-bold text-slate-800">{formatCurrency(selectedEmployee.monthlyFee)}</p>
+                         <p className="text-xs text-slate-400 mt-1 truncate">{selectedEmployee.healthPlanType}</p>
                       </div>
                       
-                      {/* Stat 2 */}
-                      <div className="bg-slate-50 rounded-xl p-4 border border-slate-100 hover:border-indigo-100 hover:shadow-md transition-all group">
+                      {/* Stat 2: Odonto (NEW) */}
+                      <div className="bg-slate-50 rounded-xl p-4 border border-slate-100 hover:border-orange-100 hover:shadow-md transition-all group">
                          <div className="flex items-center justify-between mb-2">
-                            <span className="text-xs font-semibold text-slate-400 uppercase">Dependentes</span>
-                            <Users className="h-4 w-4 text-indigo-400 group-hover:text-indigo-600 transition-colors" />
+                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wide">Odonto</span>
+                            <Smile className="h-4 w-4 text-orange-400 group-hover:text-orange-600 transition-colors" />
+                         </div>
+                         <p className="text-lg font-bold text-slate-800">{formatCurrency(selectedEmployee.dentalCost)}</p>
+                         <p className="text-xs text-slate-400 mt-1 truncate">{selectedEmployee.dentalPlanType}</p>
+                      </div>
+
+                      {/* Stat 3: Dependentes */}
+                      <div className="bg-slate-50 rounded-xl p-4 border border-slate-100 hover:border-orange-100 hover:shadow-md transition-all group">
+                         <div className="flex items-center justify-between mb-2">
+                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wide">Dependentes</span>
+                            <Users className="h-4 w-4 text-orange-400 group-hover:text-orange-600 transition-colors" />
                          </div>
                          <p className="text-lg font-bold text-slate-800">{formatCurrency(selectedEmployee.dependentsCost)}</p>
                       </div>
 
-                      {/* Stat 3 */}
-                      <div className="bg-slate-50 rounded-xl p-4 border border-slate-100 hover:border-indigo-100 hover:shadow-md transition-all group">
+                      {/* Stat 4: Copay */}
+                      <div className="bg-slate-50 rounded-xl p-4 border border-slate-100 hover:border-orange-100 hover:shadow-md transition-all group">
                          <div className="flex items-center justify-between mb-2">
-                            <span className="text-xs font-semibold text-slate-400 uppercase">Coparticipação</span>
-                            <DollarSign className="h-4 w-4 text-indigo-400 group-hover:text-indigo-600 transition-colors" />
+                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wide">Coparticipação</span>
+                            <DollarSign className="h-4 w-4 text-orange-400 group-hover:text-orange-600 transition-colors" />
                          </div>
                          <p className="text-lg font-bold text-slate-800">{formatCurrency(selectedEmployee.copay)}</p>
                       </div>
@@ -277,7 +294,7 @@ const App: React.FC = () => {
                     <div className="flex flex-col sm:flex-row gap-4">
                       <button
                         onClick={() => generatePDF(selectedEmployee)}
-                        className="flex-1 inline-flex justify-center items-center px-6 py-3 border border-transparent text-sm font-semibold rounded-xl text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 shadow-lg shadow-indigo-200 transition-all hover:-translate-y-0.5"
+                        className="flex-1 inline-flex justify-center items-center px-6 py-3 border border-transparent text-sm font-semibold rounded-xl text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 shadow-lg shadow-orange-200 transition-all hover:-translate-y-0.5"
                       >
                         <Download className="mr-2 h-4 w-4" />
                         Baixar Demonstrativo PDF
@@ -286,16 +303,16 @@ const App: React.FC = () => {
                       <button
                         onClick={handleGenerateEmail}
                         disabled={aiLoading}
-                        className="flex-1 inline-flex justify-center items-center px-6 py-3 border border-slate-200 text-sm font-semibold rounded-xl text-slate-700 bg-white hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 shadow-sm transition-all hover:-translate-y-0.5 disabled:opacity-70 disabled:hover:translate-y-0"
+                        className="flex-1 inline-flex justify-center items-center px-6 py-3 border border-slate-200 text-sm font-semibold rounded-xl text-slate-700 bg-white hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 shadow-sm transition-all hover:-translate-y-0.5 disabled:opacity-70 disabled:hover:translate-y-0"
                       >
                         {aiLoading ? (
                            <>
-                             <div className="w-4 h-4 border-2 border-purple-600 border-t-transparent rounded-full animate-spin mr-2"></div>
-                             <span className="text-purple-600">Gerando...</span>
+                             <div className="w-4 h-4 border-2 border-orange-600 border-t-transparent rounded-full animate-spin mr-2"></div>
+                             <span className="text-orange-600">Gerando...</span>
                            </>
                         ) : (
                           <>
-                            <Sparkles className="mr-2 h-4 w-4 text-purple-500" />
+                            <Sparkles className="mr-2 h-4 w-4 text-orange-500" />
                             <span>Criar E-mail com IA</span>
                           </>
                         )}
@@ -307,10 +324,10 @@ const App: React.FC = () => {
                 {/* AI Email Card */}
                 {emailTemplate && (
                   <div className="bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden animate-in fade-in slide-in-from-bottom-6 duration-500">
-                    <div className="bg-gradient-to-r from-purple-50 to-indigo-50 px-6 py-4 border-b border-slate-100 flex items-center justify-between">
-                      <h3 className="text-indigo-900 font-semibold flex items-center">
+                    <div className="bg-gradient-to-r from-orange-50 to-red-50 px-6 py-4 border-b border-slate-100 flex items-center justify-between">
+                      <h3 className="text-orange-900 font-semibold flex items-center">
                         <div className="bg-white p-1.5 rounded-lg shadow-sm mr-3">
-                           <Mail className="h-4 w-4 text-purple-500" />
+                           <Mail className="h-4 w-4 text-orange-500" />
                         </div>
                         Sugestão de E-mail
                       </h3>
@@ -325,7 +342,7 @@ const App: React.FC = () => {
                           <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Assunto</label>
                           <button 
                             onClick={() => copyToClipboard(emailTemplate.subject)}
-                            className="text-xs flex items-center text-indigo-600 hover:text-indigo-800 font-medium transition-colors"
+                            className="text-xs flex items-center text-orange-600 hover:text-orange-800 font-medium transition-colors"
                           >
                             <Copy className="h-3 w-3 mr-1" /> Copiar
                           </button>
@@ -340,7 +357,7 @@ const App: React.FC = () => {
                           <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Mensagem</label>
                           <button 
                             onClick={() => copyToClipboard(emailTemplate.body)}
-                            className="text-xs flex items-center text-indigo-600 hover:text-indigo-800 font-medium transition-colors"
+                            className="text-xs flex items-center text-orange-600 hover:text-orange-800 font-medium transition-colors"
                           >
                             <Copy className="h-3 w-3 mr-1" /> Copiar
                           </button>
@@ -361,8 +378,8 @@ const App: React.FC = () => {
             ) : (
               // Empty State
               <div className="h-full min-h-[500px] flex flex-col items-center justify-center p-8 text-center bg-white/50 backdrop-blur-sm rounded-3xl border border-dashed border-slate-300">
-                <div className="w-24 h-24 bg-indigo-50 rounded-full flex items-center justify-center mb-6 shadow-inner">
-                  <FileText className="h-10 w-10 text-indigo-400" />
+                <div className="w-24 h-24 bg-orange-50 rounded-full flex items-center justify-center mb-6 shadow-inner">
+                  <FileText className="h-10 w-10 text-orange-400" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-2">Nenhum colaborador selecionado</h3>
                 <p className="text-slate-500 max-w-md mb-8">
@@ -377,7 +394,7 @@ const App: React.FC = () => {
                     <span className="font-semibold text-slate-800">Modelo da Planilha</span>
                   </div>
                   <ul className="space-y-3">
-                    {['Nome', 'Plano', 'Mensalidade', 'Dependentes', 'Coparticipação', 'Referência'].map((item, i) => (
+                    {['Nome', 'Plano Saúde', 'Mensalidade', 'Dependentes', 'Coparticipação', 'Referência', 'Valor Odonto', 'Plano Odonto'].map((item, i) => (
                       <li key={i} className="flex items-center text-sm text-slate-600">
                         <div className="h-1.5 w-1.5 rounded-full bg-slate-300 mr-2.5"></div>
                         Coluna {String.fromCharCode(65 + i)}: <span className="font-medium text-slate-800 ml-1">{item}</span>

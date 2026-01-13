@@ -11,14 +11,21 @@ export const generateEmailTemplate = async (
 ): Promise<EmailTemplateResponse> => {
   
   const prompt = `
-    Você é um assistente de RH. Escreva um e-mail formal, porém amigável, para o colaborador PJ chamado "${employeeData.name}".
+    Você é um assistente de RH da empresa Raiz Educação. Escreva um e-mail formal, porém amigável, para o colaborador PJ chamado "${employeeData.name}".
     
-    O objetivo é informar sobre o desconto do plano de saúde na próxima nota fiscal.
+    O objetivo é informar sobre o desconto dos benefícios na próxima nota fiscal.
     
-    Detalhes:
+    Detalhes do Desconto:
     - Mês de referência: ${employeeData.referenceMonth}
-    - Valor total a ser descontado: R$ ${employeeData.total.toFixed(2)}
-    - Motivo: Custos de mensalidade e coparticipação do plano de saúde.
+    - Total Geral a descontar: R$ ${employeeData.total.toFixed(2)}
+    
+    Discriminação dos valores:
+    - Plano de Saúde (${employeeData.healthPlanType}): R$ ${employeeData.monthlyFee.toFixed(2)}
+    - Plano Odontológico (${employeeData.dentalPlanType}): R$ ${employeeData.dentalCost.toFixed(2)}
+    - Dependentes: R$ ${employeeData.dependentsCost.toFixed(2)}
+    - Coparticipação: R$ ${employeeData.copay.toFixed(2)}
+    
+    Por favor, mencione que o demonstrativo detalhado em PDF segue em anexo (contexto hipotético).
     
     Retorne a resposta estritamente em JSON.
   `;
@@ -48,8 +55,8 @@ export const generateEmailTemplate = async (
   } catch (error) {
     console.error("Error generating email:", error);
     return {
-      subject: "Aviso de Débito - Plano de Saúde",
-      body: `Olá ${employeeData.name},\n\nInformamos que o valor de R$ ${employeeData.total.toFixed(2)} referente ao plano de saúde (${employeeData.referenceMonth}) deve ser descontado na sua próxima nota fiscal.\n\nAtenciosamente,\nFinanceiro/RH`
+      subject: "Aviso de Débito - Benefícios",
+      body: `Olá ${employeeData.name},\n\nInformamos que o valor de R$ ${employeeData.total.toFixed(2)} referente ao plano de saúde e odontológico (${employeeData.referenceMonth}) deve ser descontado na sua próxima nota fiscal.\n\nAtenciosamente,\nPeople & Culture`
     };
   }
 };
