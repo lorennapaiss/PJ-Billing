@@ -1,0 +1,5 @@
+{
+  "name": "PJ Health Billing Manager",
+  "description": "An automated tool to parse health insurance spreadsheets and generate billing PDFs for PJ contractors, with AI-powered email communication drafting.",
+  "requestFramePermissions": []
+}
